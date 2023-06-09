@@ -1,0 +1,52 @@
+config:
+  credentials: []
+  project_repos:
+    code-repo.d4science.org/MaDgIK/eosc-explore:
+      branch: master
+      repo: https://code-repo.d4science.org/MaDgIK/eosc-explore.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      code-repo.d4science.org/MaDgIK/eosc-explore git:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-red-fly.sh
+        container: qc.acc_wiggy-rust-robin
+  QC.Doc:
+    repos:
+      code-repo.d4science.org/MaDgIK/eosc-explore find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.gummy-seashell-quoll.sh
+        container: qc.doc_muzzy-wheat-tapir
+      code-repo.d4science.org/MaDgIK/eosc-explore git:
+        commands:
+        - /usr/bin/env sh .sqa/script.blurry-white-crocodile.sh
+        container: qc.doc_greasy-persimmon-alligator
+      code-repo.d4science.org/MaDgIK/eosc-explore markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaky-lavender-dane.sh
+        container: qc.doc_crappy-crimson-stoat
+  QC.Lic:
+    repos:
+      code-repo.d4science.org/MaDgIK/eosc-explore licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.sunny-magnolia-chin.sh
+        container: qc.lic_greasy-amethyst-hound
+  QC.Sty:
+    repos:
+      code-repo.d4science.org/MaDgIK/eosc-explore jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-firebrick-cassowary.sh
+        container: qc.sty_snippy-lime-bongo
+  QC.Ver:
+    repos:
+      code-repo.d4science.org/MaDgIK/eosc-explore get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.homey-teal-duck.sh
+        container: qc.ver_dorky-chestnut-jaguar
+timeout: 5400
